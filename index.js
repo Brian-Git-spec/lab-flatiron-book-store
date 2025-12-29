@@ -43,5 +43,37 @@ const bookStore = {
     ]
 }
 
-// Write your code here!
+// Step 2: Manipulating Existing Elements
+const bookStoreTitle = document.querySelector('#header');
+bookStoreTitle.textContent = bookStore.name;
 
+// Step 3: Book Elements
+const bookList = document.querySelector('#book-list');
+
+// IMPORTANT: Clear the placeholder item so the tests find your book images first
+bookList.innerHTML = '';
+
+bookStore.books.forEach(book => {
+    
+    // Create elements for each book
+    const bookContainer = document.createElement('li'); 
+    const bookTitle = document.createElement('h3');     
+    const bookAuthor = document.createElement('p');     
+    const bookImage = document.createElement('img');    
+
+    // Change the textContent/src to match the book object
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = book.author;
+    
+    // Use book.imageUrl (the correct key from your object)
+    bookImage.src = book.imageUrl;
+    bookImage.alt = book.title; 
+
+    // Append book title, author, and image to the bookContainer (li)
+    bookContainer.appendChild(bookTitle);
+    bookContainer.appendChild(bookAuthor);
+    bookContainer.appendChild(bookImage);
+
+    // Append the bookContainer (li) to the bookList (ul)
+    bookList.appendChild(bookContainer);
+});
